@@ -1,0 +1,9 @@
+{
+  "pdf2docx": "0.5.13",
+  "PyMuPDF": "1.28.2",
+  "MuPDF": "1.28.2",
+  "TesseractJS": "6.0.1",
+  "TesseractCore": "6.1.2",
+  "ocrLanguage": "English",
+  "localOnly": true
+}

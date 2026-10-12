@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "name": "Night garden · social post",
+  "roots": [],
+  "assets": [
+    {
+      "id": "example:Botanical seal",
+      "name": "Botanical seal.svg",
+      "type": "image",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIiB2aWV3Qm94PSIwIDAgODAwIDgwMCI+PGNpcmNsZSBjeD0iNDAwIiBjeT0iNDAwIiByPSIyODAiIGZpbGw9IiNkZmFhNzIiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSI0MDAiIHI9IjI0NyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzM0ZTQ0IiBzdHJva2Utd2lkdGg9IjgiLz48cGF0aCBkPSJNNDAwIDYxMFYyMDUgTTQwMCA1MTBRMjMwIDQ3MCAyNDUgMzUwUTM4MCAzNTAgNDAwIDUxMCBNNDAwIDQxMFE1NTUgMzg1IDU1MCAyNzBRNDEwIDI4NSA0MDAgNDEwIiBmaWxsPSIjNTU3YjcwIiBzdHJva2U9IiMzMzRlNDQiIHN0cm9rZS13aWR0aD0iOCIvPjxjaXJjbGUgY3g9IjQwMCIgY3k9IjE3MCIgcj0iMjUiIGZpbGw9IiMzMzRlNDQiLz48L3N2Zz4=",
+      "tags": [
+        "Jago originals"
+      ],
+      "size": 428,
+      "added": 1791595273536
+    },
+    {
+      "id": "example:Night garden",
+      "name": "Night garden.svg",
+      "type": "image",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIiB2aWV3Qm94PSIwIDAgODAwIDgwMCI+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI4MDAiIGZpbGw9IiMyNDM5NDIiLz48Y2lyY2xlIGN4PSI1NjAiIGN5PSIyNDAiIHI9IjExOCIgZmlsbD0iI2VlY2ZhMCIvPjxwYXRoIGQ9Ik0wIDY1MFEyMDAgNDMwIDQzMCA2MjVUODAwIDU3MFY4MDBIMFoiIGZpbGw9IiM1NTdiNzAiLz48cGF0aCBkPSJNMCA3MjBRMjUwIDUyMCA0MjAgNzAwVDgwMCA2NTBWODAwSDBaIiBmaWxsPSIjOTJhYzg2Ii8+PGcgZmlsbD0iI2VlY2ZhMCI+PGNpcmNsZSBjeD0iMTYwIiBjeT0iMTgwIiByPSI1Ii8+PGNpcmNsZSBjeD0iMjY1IiBjeT0iMzQwIiByPSI0Ii8+PGNpcmNsZSBjeD0iNjQwIiBjeT0iNDIwIiByPSI0Ii8+PC9nPjwvc3ZnPg==",
+      "tags": [
+        "Jago originals"
+      ],
+      "size": 439,
+      "added": 1791595273536
+    },
+    {
+      "id": "example:Jago arch",
+      "name": "Jago arch.svg",
+      "type": "image",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIiB2aWV3Qm94PSIwIDAgODAwIDgwMCI+PHBhdGggZD0iTTE4MCA2NzBWMzQ1YTIyMCAyMjAgMCAwIDEgNDQwIDB2MzI1WiIgZmlsbD0iI2M5ODY2YSIvPjxwYXRoIGQ9Ik0yNjAgNjcwVjM0NWExNDAgMTQwIDAgMCAxIDI4MCAwdjMyNVoiIGZpbGw9IiNlZGM5OTQiLz48cGF0aCBkPSJNMzQwIDY3MFYzNDVhNjAgNjAgMCAwIDEgMTIwIDB2MzI1WiIgZmlsbD0iIzU1N2I3MCIvPjwvc3ZnPg==",
+      "tags": [
+        "Jago originals"
+      ],
+      "size": 283,
+      "added": 1791595273536
+    },
+    {
+      "id": "system:Georgia",
+      "name": "Georgia",
+      "type": "font",
+      "system": true,
+      "family": "Georgia",
+      "tags": [
+        "Example fonts"
+      ],
+      "category": "Serif",
+      "added": 1791595273536
+    },
+    {
+      "id": "system:Arial",
+      "name": "Arial",
+      "type": "font",
+      "system": true,
+      "family": "Arial",
+      "tags": [
+        "Example fonts"
+      ],
+      "category": "Sans",
+      "added": 1791595273536
+    },
+    {
+      "id": "system:Courier New",
+      "name": "Courier New",
+      "type": "font",
+      "system": true,
+      "family": "Courier New",
+      "tags": [
+        "Example fonts"
+      ],
+      "category": "Mono",
+      "added": 1791595273536
+    }
+  ],
+  "recipes": [
+    {
+      "name": "Transparent social asset",
+      "width": 1080,
+      "height": 1080,
+      "padding": 80,
+      "trim": true,
+      "transparent": true,
+      "placement": "contain",
+      "format": "png",
+      "prefix": "jago",
+      "background": "#f7f3e9"
+    }
+  ],
+  "layout": {
+    "width": 1080,
+    "height": 1350,
+    "background": "#243942",
+    "layers": [
+      {
+        "id": "garden",
+        "kind": "image",
+        "assetId": "example:Night garden",
+        "x": 0,
+        "y": 180,
+        "w": 1080,
+        "h": 1080,
+        "opacity": 1
+      },
+      {
+        "id": "eyebrow",
+        "kind": "text",
+        "text": "JAGO  /  FIELD NOTES",
+        "x": 85,
+        "y": 80,
+        "w": 900,
+        "h": 65,
+        "size": 25,
+        "color": "#eecfa0",
+        "font": "Arial",
+        "align": "left",
+        "opacity": 1
+      },
+      {
+        "id": "title",
+        "kind": "text",
+        "text": "A small world\nof creative things.",
+        "x": 85,
+        "y": 220,
+        "w": 900,
+        "h": 250,
+        "size": 78,
+        "color": "#f8f6f0",
+        "font": "Georgia",
+        "align": "left",
+        "opacity": 1
+      },
+      {
+        "id": "caption",
+        "kind": "text",
+        "text": "Find it. Make it. Share it.",
+        "x": 85,
+        "y": 1240,
+        "w": 900,
+        "h": 60,
+        "size": 30,
+        "color": "#eecfa0",
+        "font": "Arial",
+        "align": "left",
+        "opacity": 1
+      }
+    ]
+  }
+}
