@@ -1,0 +1,16 @@
+[
+  {
+    "name": "docx-preview",
+    "version": "0.4.1",
+    "license": "Apache-2.0",
+    "source": "https://registry.npmjs.org/docx-preview/-/docx-preview-0.4.1.tgz",
+    "sha256": "b5c34d9fb04b3d70ba8cde8a71e2d361325993652ea917817654ed9431750432"
+  },
+  {
+    "name": "jszip",
+    "version": "3.10.2",
+    "license": "(MIT OR GPL-3.0-or-later)",
+    "source": "https://registry.npmjs.org/jszip/-/jszip-3.10.2.tgz",
+    "sha256": "4ee15dcb3f5433b736a41d091bcad37facee4a4aa96f9e21194789da886ac226"
+  }
+]

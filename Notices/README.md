@@ -9,3 +9,8 @@ The separate **Tools/PDF** process is the offline reconstruction engine. Its Jag
 Offline scan recognition uses Tesseract.js 6.0.1, Tesseract.js-core 6.1.2 and English tessdata_fast, under their included Apache 2.0 licences. It is entirely local; no remote OCR service is used. Source package archives are included under Source/PDF-Engine/Upstream.
 
 These software licences do not claim ownership of your creations or converted documents. Imported fonts, images and documents retain their original rights.
+
+
+DOCX layout previews use docx-preview 0.4.1 (Apache-2.0) and JSZip 3.10.2 under its MIT option. Original licences and a component manifest are under Documents. They are embedded in the browser build and loaded when needed.
+
+The optional separate LibreOffice renderer is unmodified, MPL-2.0 software with third-party components under their included licences. A packaged renderer retains its license.txt, LICENSE.html, NOTICE, readmes and accompanying licence information. Jago calls it as a separate local process using a private profile; Microsoft Word is not required. See Documents/LibreOffice.md for source availability and redistribution details.

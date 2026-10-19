@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: MIT
+using System;using System.IO;using System.Collections.Generic;using System.Threading.Tasks;using System.Windows.Forms;using System.Security.Cryptography;using System.Diagnostics;
+sealed partial class WorldWindow {
+ readonly object projectReceiptLock=new object();
+ void RegisterProjectOutput(string path){lock(projectReceiptLock){string file=Path.Combine(Program.Root,"Project-export-receipts.json");var list=File.Exists(file)?ProjectSerializer().Deserialize<List<string>>(File.ReadAllText(file)):new List<string>();string full=Path.GetFullPath(path);list.RemoveAll(x=>String.Equals(x,full,StringComparison.OrdinalIgnoreCase));list.Insert(0,full);if(list.Count>500)list.RemoveRange(500,list.Count-500);string temp=file+"."+Guid.NewGuid().ToString("N")+".tmp";try{File.WriteAllText(temp,ProjectSerializer().Serialize(list));if(File.Exists(file))File.Replace(temp,file,null);else File.Move(temp,file);}finally{if(File.Exists(temp))File.Delete(temp);}}}
+ bool KnownProjectOutput(string path){lock(projectReceiptLock){string file=Path.Combine(Program.Root,"Project-export-receipts.json");if(!File.Exists(file)||String.IsNullOrEmpty(path))return false;string full=Path.GetFullPath(path);return ProjectSerializer().Deserialize<List<string>>(File.ReadAllText(file)).Exists(x=>String.Equals(x,full,StringComparison.OrdinalIgnoreCase));}}
+ async Task HandleProjectReview(Dictionary<string,object> m){string type=Convert.ToString(m["type"]),request=Convert.ToString(m["request"]);try{
+ if(type=="project-font-check"){var families=await Task.Run(()=>{using(var fonts=new System.Drawing.Text.InstalledFontCollection())return System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Select(fonts.Families,f=>f.Name));});ManagedPost(new{type="project-result",request,families});return;}if(type=="project-fingerprint"){
+ string file; if(!assetPaths.TryGetValue(Convert.ToString(m["id"]),out file)||!File.Exists(file))throw new IOException("Original file unavailable. Reconnect its source.");
+ var result=await Task.Run(()=>{var before=new FileInfo(file);long length=before.Length;DateTime stamp=before.LastWriteTimeUtc;if(length>1000000000)throw new IOException("Fingerprint files under 1 GB.");string hash;using(var input=new FileStream(file,FileMode.Open,FileAccess.Read,FileShare.Read))using(var sha=SHA256.Create())hash=BitConverter.ToString(sha.ComputeHash(input)).Replace("-","").ToLowerInvariant();var after=new FileInfo(file);if(after.Length!=length||after.LastWriteTimeUtc!=stamp)throw new IOException("File changed while checking. Refresh and retry.");return new{type="project-result",request,sha256=hash,size=length};});ManagedPost(result);return;
+ }
+ string path=m.ContainsKey("path")?Convert.ToString(m["path"]):null;
+ if((type=="project-export-folder"||type=="project-export-again")&&!KnownProjectOutput(path))throw new IOException("This output has no local export record. Make a fresh export from the project.");
+ if(type=="project-export-folder"){
+ if(String.IsNullOrWhiteSpace(path)||!Path.IsPathRooted(path))throw new IOException("Output location is unavailable.");string dir=Path.GetDirectoryName(Path.GetFullPath(path));if(!Directory.Exists(dir))throw new IOException("Output folder has moved or is unavailable.");if(Program.Test==null)Process.Start(new ProcessStartInfo("explorer.exe","\""+dir+"\""){UseShellExecute=true});ManagedPost(new{type="project-result",request,opened=true});return;
+ }
+ string name=ProjectName(Convert.ToString(m["name"])),target=null;
+ if(type=="project-export-again"&&(!File.Exists(path)||new FileInfo(path).Length>1000000000))throw new IOException("Previous exported file is unavailable or too large. Export again from the source.");
+ if(Program.Test!=null)target=Path.Combine(Program.Test,name);else using(var pick=new SaveFileDialog{Title=type=="project-export-again"?"Save another copy":"Save export",FileName=name,OverwritePrompt=true})if(pick.ShowDialog(this)==DialogResult.OK)target=pick.FileName;
+ if(target==null){ManagedPost(new{type="project-result",request,cancelled=true});return;}
+ if(type=="project-export-again"&&String.Equals(Path.GetFullPath(path),Path.GetFullPath(target),StringComparison.OrdinalIgnoreCase)){ManagedPost(new{type="project-result",request,path=target});return;}
+ await Task.Run(()=>{string temp=Path.Combine(Path.GetDirectoryName(target),".jago-export-"+Guid.NewGuid().ToString("N")+".tmp");try{if(type=="project-export-save"){string data=Convert.ToString(m["data"]);if(data.Length>86000000)throw new IOException("Export exceeds 64 MB.");byte[] bytes=Convert.FromBase64String(data);if(bytes.Length>64000000)throw new IOException("Export exceeds 64 MB.");File.WriteAllBytes(temp,bytes);}else if(type=="project-export-again")File.Copy(path,temp);else throw new IOException("Unsupported export action.");if(File.Exists(target))File.Replace(temp,target,null);else File.Move(temp,target);}finally{if(File.Exists(temp))File.Delete(temp);}});
+ RegisterProjectOutput(target);ManagedPost(new{type="project-result",request,path=target});
+ }catch(Exception e){ManagedPost(new{type="project-result",request,error=e.Message});}}
+}

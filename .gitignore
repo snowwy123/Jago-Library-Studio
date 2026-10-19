@@ -9,3 +9,8 @@ Jago-*.html
 Tools/PDF/
 Tests/Run/
 !index.html
+
+Tools/Documents/
+Source/Tests/Run/
+
+Source/Tests/Projects-run/
