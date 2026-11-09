@@ -42,3 +42,12 @@ Run `node --test Source/Tests/workflow-model.test.cjs` for replacement, usage, v
 Run `node --test Source/Tests/creative-model.test.cjs` for dependency, planning, arrangement and preflight rules. Browser interaction checks are `Source/Tests/browser-creative-hub.cjs` and `Source/Tests/browser-reference-tools.cjs`; they require Playwright and Edge. `Source/Tests/native-creative-hub.py` verifies Windows shelf packaging, brand storage and backup receipts using an isolated test profile.
 
 `Source/Tests/native-library-home.py` verifies editable folder setup, remembered homes, streaming copy verification, identical-file reuse, collection nesting and project-reference updates. Set `JAGO_HOME_TEST_WORK` to an isolated test directory.
+
+## Native image previews
+
+The Windows build compiles and embeds ImagePreviewWorker.cs automatically; no separate image tool installation is needed. Raster display copies are decoded only on request in a short-lived process, with a 1 GiB memory limit and 20-second timeout. Originals are referenced unchanged. Cached PNG display copies use 640, 2048 or 4096 pixels on the longest edge and a 256 MiB disk budget. Source limits are 512 MiB and 256 megapixels for this path. Browser embedded limits and non-image read limits are separate. Export continues to use bounded working images, not unrestricted original-resolution raster rendering.
+
+Run `python Source/Tests/native-smart-previews.py` after building on Windows. Requires Pillow and NumPy; generates a real 51.2MP / 153MB PNG and small alpha, EXIF and rejection fixtures. Tests native file references, preview sizes, cached-file regeneration, exportability, unchanged originals, alpha and upright photo dimensions. Set JAGO_IMAGE_TEST_WORK to an existing output parent and JAGO_NATIVE_APP to test a packaged executable. Temporary test output is retained at the reported path for inspection.
+
+
+Board gallery / continuous PDF checks: `node Source/Tests/browser-board-gallery-pdf.cjs` and `python Source/Tests/native-board-gallery-pdf.py`. Set `JAGO_PROJECT_TEST_WORK` to an evidence folder. Fixtures are generated locally; the native probe uses a separate profile. Checks include persistent thumbnails, artwork invalidation, direct open, page scrolling/jumps/search, bounded renders and text selection. Existing Explorer thumbnail setup is separate; the save cover remains embedded PNG.
